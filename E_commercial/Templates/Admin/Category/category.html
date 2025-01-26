@@ -1,0 +1,42 @@
+{% extends "Admin/admin.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="content py-5">
+    <h1>Category</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">IMAGE</th>
+                <th scope="col">NAME</th>
+                <th scope="col">ACTION</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in category %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td><img class="img-thumbnail" src="{{ item.image.url }}" alt="..." style="width: 200px;"></td>
+                <td>{{ item.name }}</td>
+                <td>
+                    <a href="{% url "category_view" item.id %}">View |</a>
+                    <a href="{% url "category_update" item.id %}">Update |</a>
+                    <a href="{% url "category_delete" item.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+            <tr class="text-center">
+                <th colspan="4"><a href="{% url "category_create" %}">Add Category</a></th>
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,48 @@
+{% extends "Admin/admin.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="content py-5">
+    <h1>Category</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">IMAGE</th>
+                <th scope="col">NAME</th>
+                <th scope="col">CATEGORY</th>
+                <th scope="col">PRICE</th>
+                <th scope="col">STOCK</th>
+                <th scope="col">ACTION</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in product %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td><img class="img-thumbnail" src="{{ item.image.url }}" alt="..." style="width: 150px;"></td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.product_category }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.stock }}</td>
+                <td>
+                    <a href="{% url "product_view" item.id %}">View |</a>
+                    <a href="{% url "product_update" item.id %}">Update |</a>
+                    <a href="{% url "product_delete" item.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+            <tr class="text-center">
+                <th colspan="7"><a href="{% url "product_create" %}">Add Product</a></th>
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,39 @@
+{% extends "Admin/admin.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="content py-5">
+    <h1>User View</h1>
+    <table class="table">
+        <tbody>
+          <tr>
+            <th>Name:</th>
+            <td>{{user.first_name}} {{ user.last_name }}</td>
+          </tr>
+          <tr>
+            <th>Username</th>
+            <td>{{user.username}}</td>
+          </tr>
+          <tr>
+            <th>Email ID:</th>
+            <td>{{user.email}}</td>
+          </tr>
+          <tr>
+            <th>Date Joined:</th>
+            <td>{{user.date_joined}}</td>
+          </tr>
+          <tr>
+            <th>Last Login:</th>
+            <td>{{user.last_login}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+</div>
+
+
+{% endblock content %}

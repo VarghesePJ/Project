@@ -1,0 +1,20 @@
+{% extends "Admin/admin.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="content py-5">
+    <h1>Category Delete</h1>
+    <h3>Deleting {{ category.name }}</h3>
+    <p>Are you sure  ?</p>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+
+</div>
+
+
+{% endblock content %}

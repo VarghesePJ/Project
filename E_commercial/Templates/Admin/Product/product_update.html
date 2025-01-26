@@ -1,0 +1,70 @@
+{% extends "Admin/admin.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="content py-5">
+    <h1>Category</h1>
+ 
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+    <table class="table">
+        <tbody>
+          <tr>
+            <th>Name:</th>
+            <td><input type="text" id="name" name="name" value="{{ product.name }}"></td>
+          </tr>
+          <tr>
+            <th>Product Category</th>
+            <td>
+                <select name="product_category" required>
+                    {% for item in category %}
+                        <option value="{{ item.id }}" {% if item.id == product.product_category.id %}selected{% endif %}>
+                            {{ item.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <th>Description:</th>
+            <td><textarea id="description" name="description">{{ product.description }}</textarea></td>
+          </tr>
+          <tr>
+            <th>Current Image:</th>
+            <td>{% if product.image %}
+                <img src="{{ product.image.url }}" alt="Product Image" style="max-width: 150px; max-height: 150px;">
+            {% else %}
+                <p>No image available</p>
+            {% endif %}</td>
+          </tr>
+          <tr>
+            <th>Change Image:</th>
+            <td><input type="file" id="image" name="image"></td>
+          </tr>
+          <tr>
+            <th>Price:</th>
+            <td><input type="number" id="price" name="price" value="{{ product.price }}"></td>
+          </tr>
+          <tr>
+            <th>Stock:</th>
+            <td><input type="number" id="stock" name="stock" value="{{ product.stock }}"></td>
+          </tr>
+          <tr>
+            <th>Available:</th>
+            <td><input type="checkbox" name="is_available" id="is_available" {% if product.is_available %}checked{% endif %}><td>
+          </tr>
+          <tr>
+            <td><button type="submit">Update</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+    
+    
+
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,26 @@
+{% extends "Admin/admin.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="content py-5">
+    <h1>Order:</h1>
+    <table class="table">
+        <tbody>
+            {% for payment in payments %}
+          <tr>
+            <th>User: {{ payment.user }} </th>
+            <th>Order ID: {{ payment.order_id }} </th>
+            <th>Name: {{ payment.name }} </th>
+            <th>Status: {{ payment.status }} </th>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+
+</div>
+
+{% endblock content %}

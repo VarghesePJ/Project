@@ -1,0 +1,31 @@
+{% extends "Admin/admin.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="content py-5">
+    <h1>Category View</h1>
+    <table class="table">
+        <tbody>
+          <tr>
+            <th>Image:</th>
+            <td><img class="img-thumbnail" src="{{ category.image.url }}" alt="..." style="width: 200px;"></td>
+          </tr>
+          <tr>
+            <th>Name:</th>
+            <td>{{category.name}}</td>
+          </tr>
+          <tr>
+            <th>Description:</th>
+            <td>{{category.description}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+</div>
+
+
+{% endblock content %}

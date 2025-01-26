@@ -1,0 +1,66 @@
+{% extends "Home/home.html" %}
+
+{% load static %}
+
+{% block content %}
+<section class="section-content padding-y" style="min-height:84vh">
+    <!-- ============================ COMPONENT REGISTER   ================================= -->
+        <div class="card mx-auto" style="max-width: 580px; margin-top:100px;">
+          <div class="card-body">
+          <h4 class="card-title mb-4">Create Account</h4>
+          {% if messages %}
+            <div class="alert-container">
+              {% for message in messages %}
+              <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+          <form action="" method="POST">
+            {%csrf_token%}
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="First Name" name="first_name" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Last Name" name="last_name" required>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Username" name="username" required>
+              </div>
+  
+              <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email Address" name="email" required>
+              </div>
+  
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" name="password" required>
+              </div>
+  
+              <div class="form-group">
+                <input type="password" class="form-control" placeholder="Confirm Password" name="confirm_password" required>
+              </div>
+             
+              <div class="form-group">
+                  <a href="" class="float-right">Forgot password?</a>
+              </div>
+  
+              <div class="form-group">
+                  <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+              </div>
+          </form>
+          </div> <!-- card-body.// -->
+        </div> <!-- card .// -->
+   
+         <p class="text-center mt-4">Already have an account? <a href="">Sign in</a></p>
+         <br><br>
+  </section>
+  {% endblock content %}

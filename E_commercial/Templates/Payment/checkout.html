@@ -1,0 +1,137 @@
+{% extends "Home/home.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<section class="ftco-section ftco-cart">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 ftco-animate">
+                <h2>Cart</h2>
+                <div class="cart-list">
+                    <table class="table">
+                        <thead class="thead-primary">
+                            <tr class="text-center">
+                                <th>&nbsp;</th>
+                                <th>Product name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in cart_items %}
+                            <tr class="text-center">
+
+                                <td class="image-prod">
+                                    <div class="img" style="background-image:url( {{ item.product.image.url }} );">
+                                    </div>
+                                </td>
+
+                                <td class="product-name">
+                                    <h3>{{ item.product.name }}</h3>
+                                </td>
+
+                                <td class="price">{{ item.product.price }}₹</td>
+
+                                <td class="quantity">
+                                    <div class="input-group">
+                                        <a href="{% url 'update' item.product.id 'minus' %}"
+                                            class="btn btn-outline-secondary">
+                                            <i class="ion-ios-remove"></i>
+                                        </a>
+                                        <input type="text" name="quantity" class="quantity form-control text-center"
+                                            value="{{ item.quantity }}" min="1" max="100" readonly>
+                                        <a href="{% url 'update' item.product.id 'plus' %}"
+                                            class="btn btn-outline-secondary">
+                                            <i class="ion-ios-add"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-12 ftco-animate">
+                <h2>Order Details</h2>
+                <table class="table">
+                    <thead>
+                        {% for order in orders %}
+                        <tr>
+                            <th scope="col">User:</th>
+                            <th scope="col">{{ order.user }}</th>
+                        </tr>
+                        <tr>
+                            <th scope="col">Name:</th>
+                            <th scope="col">{{ order.name }}</th>
+                        </tr>
+                        <tr>
+                            <th scope="col">State:</th>
+                            <th scope="col">{{ order.state }}</th>
+                        </tr>
+                        <tr>
+                            <th scope="col">Address:</th>
+                            <th scope="col">{{ order.address }}</th>
+                        </tr>
+                        <tr>
+                            <th scope="col">City:</th>
+                            <th scope="col">{{ order.city }}</th>
+                        </tr>
+                        <tr>
+                            <th scope="col">Postcode:</th>
+                            <th scope="col">{{ order.postcode }}</th>
+                        </tr>
+                        <tr>
+                            <th scope="col">Phone:</th>
+                            <th scope="col">{{ order.phone }}</th>
+                        </tr>
+                        <tr>
+                            <th scope="col">Email:</th>
+                            <th scope="col">{{ order.email }}</th>
+                        </tr>
+                        {% endfor %}
+                    </thead>
+                </table>
+            </div>
+            <button class="btn btn-primary py-3 px-4" id="rzp-button1">Pay with Razorpay</button>
+        </div>
+    </div>
+</section>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+var options = {
+    "key": "rzp_test_K0OabovqErNs4i",
+    "amount": "{{payment.amount}}",
+    "currency": "INR",
+    "name": "E-commercial",
+    "order_id": "{{payment.id}}",
+    "handler": function (response){
+
+        window.location.href = `http://127.0.0.1:8000/payment/success/?razorpay_payment_id=${response.razorpay_payment_id}&razorpay_order_id=${response.razorpay_order_id}&razorpay_signature=${response.razorpay_signature}`
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+});
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+
+{% endblock content %}
