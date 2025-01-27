@@ -146,7 +146,6 @@ RAZOR_KEY_SECRET = 'o1r418OMxSYqUEPw99EJjGZX'
 
 # For Email
 
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -155,8 +154,8 @@ EMAIL_HOST_PASSWORD = 'cihm pavf uqqu ovsh'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'varghesejosephputhuva@gmail.com'
 
-# AWS_ACCESS_KEY_ID = 'AKIAWX2IFZBFTVI5SM4U'
-# AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 
 AWS_STORAGE_BUCKET_NAME = 'my-s3-bucket-ecommercial'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
