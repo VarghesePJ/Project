@@ -24,7 +24,7 @@ import os
 
 load_dotenv()
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-pm&fw$%s#xr8@5iavt-e5_mjp=t5%7am8=773t^8qkmdp#hp%s'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -87,10 +87,10 @@ WSGI_APPLICATION = 'E_commercial.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Ecommercial',
-        'USER': 'Varghese',
-        'PASSWORD': 'myRDSpassword',
-        'HOST': 'database-1.ch02ce2wqhyi.eu-north-1.rds.amazonaws.com',
+        'NAME': os.getenv('NAME'),
+        'USER': os.getenv('USER'),
+        'PASSWORD': os.getenv('PASSWORD'),
+        'HOST': os.getenv('HOST'),
         'PORT': '5432',
     }
 }
@@ -141,18 +141,18 @@ AUTH_USER_MODEL = 'Account.User'
 
 # Razor Pay deatils
 
-RAZOR_KEY_ID = 'rzp_test_K0OabovqErNs4i'
-RAZOR_KEY_SECRET = 'o1r418OMxSYqUEPw99EJjGZX'
+RAZOR_KEY_ID = os.getenv('RAZOR_KEY_ID')
+RAZOR_KEY_SECRET = os.getenv('RAZOR_KEY_SECRET')
 
 # For Email
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'varghesejosephputhuva@gmail.com'
-EMAIL_HOST_PASSWORD = 'cihm pavf uqqu ovsh'
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'varghesejosephputhuva@gmail.com'
+EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('AWS_AEMAIL_HOST_PASSWORDCCESS_KEY_ID')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
